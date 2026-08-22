@@ -91,7 +91,7 @@ function loadPose(index) {
     poseName.textContent = pose.name;
     
     // Set video source
-    poseVideo.src = `/static/assets/yoga_videos/${pose.video}`;
+    poseVideo.src = `static/assets/yoga_videos/${pose.video}`;
     poseVideo.load();
     
     // Reset video properties
@@ -243,38 +243,75 @@ function endWorkout(completedSuccessfully = false) {
     }
 }
 
-// SQLite database logger (AJAX fetch)
+// Local database logger for GitHub Pages
 function logWorkoutToSQLite(durationSec, calories, poses, startDt, endDt) {
     const formatDateISO = (d) => d.toISOString().split('T')[0];
     const formatTimeOnly = (d) => d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
+    
+    const userId = localStorage.getItem('hv_user_id') || 'demo_user';
+    const sessionDate = formatDateISO(startDt);
+    const startTime = formatTimeOnly(startDt);
+    const endTime = formatTimeOnly(endDt);
 
-    fetch("/api/yoga/log", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            duration: durationSec,
-            calories: calories,
-            completed_poses: poses,
-            start_time: formatTimeOnly(startDt),
-            end_time: formatTimeOnly(endDt),
-            status: "Completed",
-            session_date: formatDateISO(startDt),
-            avg_bpm: null,
-            max_bpm: null
-        })
-    })
-    .then(response => {
-        if (!response.ok) throw new Error(`HTTP error ${response.status}`);
-        return response.json();
-    })
-    .then(data => {
-        console.log("Workout logged:", data);
-    })
-    .catch(error => {
-        console.error("SQLite Sync Error:", error);
-    });
+    // 1. Save yoga session details locally
+    HV_DB.saveYogaSession(userId, sessionDate, startTime, endTime, durationSec, calories, poses, "Completed");
+
+    // 2. Add to daily progress trackers automatically
+    const minutes = Math.max(1, Math.round(durationSec / 60));
+    const latestProgress = HV_DB.getLatestProgress(userId) || { water: 0, sleep: 0 };
+    HV_DB.saveProgress(userId, latestProgress.water, calories, minutes, latestProgress.sleep);
+
+    // 3. Award badges
+    const newBadges = [];
+    const allSessions = HV_DB.getYogaSessions(userId);
+    const completedSessions = allSessions.filter(s => s.status === "Completed");
+
+    if (completedSessions.length >= 1) {
+        if (HV_DB.awardBadgeIfNew(userId, "First Session")) {
+            newBadges.push("First Session");
+        }
+    }
+    if (completedSessions.length >= 10) {
+        if (HV_DB.awardBadgeIfNew(userId, "Yoga Master")) {
+            newBadges.push("Yoga Master");
+        }
+    }
+    const streakDays = HV_DB.getStreakDays(userId);
+    if (streakDays >= 7) {
+        if (HV_DB.awardBadgeIfNew(userId, "7 Day Streak")) {
+            newBadges.push("7 Day Streak");
+        }
+    }
+    if (streakDays >= 30) {
+        if (HV_DB.awardBadgeIfNew(userId, "30 Day Streak")) {
+            newBadges.push("30 Day Streak");
+        }
+    }
+
+    console.log("Workout logged to local storage. Streak:", streakDays, "New badges:", newBadges);
+    
+    // Update db status message on completion page
+    const statusBanner = document.getElementById("db-logging-status");
+    if (statusBanner) {
+        statusBanner.textContent = "Workout saved successfully to your offline profile!";
+        statusBanner.style.background = "rgba(124, 252, 0, 0.2)";
+        statusBanner.style.color = "#7CFC00";
+    }
+
+    // Display badges if unlocked
+    const badgesSection = document.getElementById("badges-unlocked-section");
+    const badgesContainer = document.getElementById("badges-unlocked-container");
+    if (badgesSection && badgesContainer && newBadges.length > 0) {
+        badgesSection.style.display = "block";
+        badgesContainer.innerHTML = "";
+        newBadges.forEach(badge => {
+            const badgeDiv = document.createElement("div");
+            badgeDiv.className = "badge-item";
+            const icon = badge === "First Session" ? "🥉" : (badge === "Yoga Master" ? "🏆" : "🏅");
+            badgeDiv.innerHTML = `<h3>${icon} ${badge}</h3>`;
+            badgesContainer.appendChild(badgeDiv);
+        });
+    }
 }
 
 // Close session modal overlay

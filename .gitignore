@@ -27,3 +27,6 @@ Health Verse/Health Verse/
 *.njsproj
 *.sln
 *.sw?
+
+# Build output
+dist/

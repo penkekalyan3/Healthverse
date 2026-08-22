@@ -1,0 +1,10 @@
+{
+  "name": "healthverse",
+  "version": "1.0.0",
+  "description": "AI Powered Fitness & Wellness Platform",
+  "private": true,
+  "scripts": {
+    "build": "python build.py"
+  },
+  "dependencies": {}
+}
