@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Health Coach | HealthVerse</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/ai.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="overlay">
+
+    <div class="container">
+
+        <h1>🤖 AI Health Coach</h1>
+
+        <p class="subtitle">
+            Your personal AI-powered wellness assistant
+        </p>
+
+        <div class="tips">
+
+            <div class="card">
+                <div class="icon">🥗</div>
+                <h2>Healthy Diet</h2>
+                <p>Eat fruits, vegetables, protein, and whole grains every day.</p>
+            </div>
+
+            <div class="card">
+                <div class="icon">🏋️</div>
+                <h2>Daily Workout</h2>
+                <p>Exercise for at least 30 minutes to stay fit.</p>
+            </div>
+
+            <div class="card">
+                <div class="icon">💧</div>
+                <h2>Hydration</h2>
+                <p>Drink 2–3 liters of water every day.</p>
+            </div>
+
+            <div class="card">
+                <div class="icon">😴</div>
+                <h2>Sleep</h2>
+                <p>Sleep 7–8 hours every night for better health.</p>
+            </div>
+
+            <div class="card">
+                <div class="icon">🧘</div>
+                <h2>Meditation</h2>
+                <p>Spend 15 minutes every day relaxing your mind.</p>
+            </div>
+
+            <div class="card">
+                <div class="icon">❤️</div>
+                <h2>Health Tip</h2>
+                <p>Healthy habits every day create a healthier future.</p>
+            </div>
+
+        </div>
+
+        <form class="chat" action="{{ url_for('ai') }}" method="POST">
+
+            <h2>💬 Ask AI</h2>
+
+            <input type="text" name="question" placeholder="Ask your health question..." value="{{ question if question else '' }}" required style="color: black;">
+
+            <button type="submit">Ask AI</button>
+
+            <div class="response" style="text-align: left; white-space: pre-wrap; margin-top: 20px; line-height: 1.6;">
+                {% if response %}
+                    {{ response }}
+                {% else %}
+                    AI responses will be displayed here after backend integration.
+                {% endif %}
+            </div>
+
+        </form>
+
+        <a href="{{ url_for('dashboard') }}" class="back">
+            ← Back to Dashboard
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

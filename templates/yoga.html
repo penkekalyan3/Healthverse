@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yoga Planner | HealthVerse</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/yoga.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/session.css') }}">
+
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="overlay">
+
+    <div class="container">
+
+        <h1>🧘 Yoga Planner</h1>
+
+        <p class="subtitle">
+            Choose your daily yoga routine and improve your health.
+        </p>
+
+        <div class="cards">
+
+            <div class="card">
+                <h2>🗻 Mountain Pose</h2>
+                <p>Improves posture, balance and confidence.</p>
+                <span>Duration: 5 Minutes</span>
+                <button>Start Session</button>
+            </div>
+
+            <div class="card">
+                <h2>🌳 Tree Pose</h2>
+                <p>Improves concentration and body stability.</p>
+                <span>Duration: 10 Minutes</span>
+                <button>Start Session</button>
+            </div>
+
+            <div class="card">
+                <h2>🐍 Cobra Pose</h2>
+                <p>Strengthens the spine and improves flexibility.</p>
+                <span>Duration: 8 Minutes</span>
+                <button>Start Session</button>
+            </div>
+
+            <div class="card">
+                <h2>👶 Child's Pose</h2>
+                <p>Relaxes your body and reduces stress.</p>
+                <span>Duration: 7 Minutes</span>
+                <button>Start Session</button>
+
+            </div>
+
+            <div class="card">
+                <h2>🐶 Downward Dog</h2>
+                <p>Stretches the whole body and boosts circulation.</p>
+                <span>Duration: 6 Minutes</span>
+                <button>Start Session</button>
+            </div>
+
+            <div class="card">
+                <h2>☀️ Sun Salutation</h2>
+                <p>A complete body warm-up and energy booster.</p>
+                <span>Duration: 15 Minutes</span>
+                <button>Start Session</button>
+            </div>
+
+        </div>
+
+        <a href="{{ url_for('dashboard') }}" class="back-btn">
+            ← Back to Dashboard
+        </a>
+
+    </div>
+
+</div>
+
+    {% include 'session.html' %}
+    <script src="{{ url_for('static', filename='js/session.js') }}"></script>
+</body>
+</html>

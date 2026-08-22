@@ -1,0 +1,129 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background-image:url("../images/background.jpg");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+    min-height:100vh;
+}
+
+.overlay{
+    width:100%;
+    min-height:100vh;
+    background:rgba(0,0,0,0.55);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.bmi-box{
+    width:420px;
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,0.2);
+    border-radius:20px;
+    padding:40px;
+    text-align:center;
+    color:#fff;
+    box-shadow:0 8px 32px rgba(0,0,0,0.3);
+}
+
+.bmi-box h1{
+    margin-bottom:10px;
+    font-size:32px;
+}
+
+.bmi-box p{
+    margin-bottom:25px;
+    color:#f5f5f5;
+}
+
+.bmi-box input{
+    width:100%;
+    padding:14px;
+    margin-bottom:18px;
+    border:none;
+    border-radius:10px;
+    outline:none;
+    font-size:16px;
+}
+
+.bmi-box button{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    background:#00b894;
+    color:white;
+    font-size:17px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.bmi-box button:hover{
+    background:#019875;
+    transform:scale(1.03);
+}
+
+.result{
+    margin-top:25px;
+    padding:20px;
+    border-radius:15px;
+    background:rgba(255,255,255,0.1);
+}
+
+.result h2{
+    margin-bottom:10px;
+    color:white;
+}
+
+.result p{
+    font-size:36px;
+    font-weight:bold;
+    color:#00ff99;
+    margin-bottom:10px;
+}
+
+.result span{
+    font-size:18px;
+    color:#fff;
+}
+
+.back-btn{
+    display:inline-block;
+    margin-top:25px;
+    color:#7CFC00;
+    text-decoration:none;
+    font-weight:600;
+}
+
+.back-btn:hover{
+    color:#ffffff;
+    text-decoration:underline;
+}
+
+@media(max-width:768px){
+
+    .bmi-box{
+        width:95%;
+        padding:30px 20px;
+    }
+
+    .bmi-box h1{
+        font-size:28px;
+    }
+
+    .result p{
+        font-size:30px;
+    }
+
+}

@@ -1,0 +1,190 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+
+    background:url("../images/background.jpg");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+
+}
+
+.overlay{
+
+    min-height:100vh;
+    background:rgba(0,0,0,.55);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:30px;
+
+}
+
+.container{
+
+    width:95%;
+    max-width:1200px;
+
+    background:rgba(255,255,255,.12);
+
+    backdrop-filter:blur(15px);
+
+    border-radius:20px;
+
+    padding:40px;
+
+    text-align:center;
+
+    color:white;
+
+}
+
+.container h1{
+
+    font-size:42px;
+
+    margin-bottom:10px;
+
+}
+
+.subtitle{
+
+    margin-bottom:35px;
+
+    color:#eeeeee;
+
+}
+
+.report-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+    gap:25px;
+
+}
+
+.report-card{
+
+    background:rgba(255,255,255,.12);
+
+    border-radius:15px;
+
+    padding:30px;
+
+    transition:.3s;
+
+}
+
+.report-card:hover{
+
+    transform:translateY(-8px);
+
+    background:rgba(255,255,255,.22);
+
+}
+
+.icon{
+
+    font-size:50px;
+
+    margin-bottom:15px;
+
+}
+
+.report-card h2{
+
+    color:#7CFC00;
+
+    margin-bottom:10px;
+
+}
+
+.report-card h3{
+
+    font-size:32px;
+
+    margin-bottom:10px;
+
+}
+
+.report-card p{
+
+    color:#f1f1f1;
+
+}
+
+.download-btn{
+
+    margin-top:40px;
+
+    padding:15px 35px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#00b894;
+
+    color:white;
+
+    font-size:18px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.download-btn:hover{
+
+    background:#019875;
+
+}
+
+.back-btn{
+
+    display:inline-block;
+
+    margin-top:30px;
+
+    color:#7CFC00;
+
+    text-decoration:none;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+}
+
+.back-btn:hover{
+
+    color:white;
+
+}
+
+@media(max-width:768px){
+
+    .container{
+
+        padding:25px;
+
+    }
+
+    .container h1{
+
+        font-size:32px;
+
+    }
+
+}

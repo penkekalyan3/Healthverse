@@ -1,0 +1,72 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:url("../images/background.jpg") center center/cover no-repeat fixed;
+}
+
+.overlay{
+    min-height:100vh;
+    background:rgba(0,0,0,.5);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:30px;
+}
+
+.container{
+    width:90%;
+    max-width:1100px;
+    background:rgba(255,255,255,.12);
+    backdrop-filter:blur(12px);
+    border-radius:20px;
+    padding:40px;
+    color:white;
+    text-align:center;
+}
+
+.subtitle{
+    margin:15px 0 30px;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:rgba(255,255,255,.15);
+    border-radius:15px;
+    padding:25px;
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+}
+
+.card h2{
+    margin-bottom:15px;
+}
+
+.card h3{
+    color:#7CFC00;
+    font-size:28px;
+}
+
+.back-btn{
+    display:inline-block;
+    margin-top:30px;
+    color:#7CFC00;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.back-btn:hover{
+    color:white;
+}

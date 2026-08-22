@@ -1,0 +1,79 @@
+<!-- Yoga Session Modal (Full-Screen Overlay) -->
+<div id="yoga-session-modal" class="session-modal-overlay" style="display: none;">
+    <div class="session-container glass">
+        
+        <!-- Header Section: Display only Yoga Pose Title -->
+        <div class="session-header">
+            <div class="session-logo">
+                <span class="logo-emoji">🧘</span>
+                <h1 id="pose-name" class="pose-title">Yoga Pose</h1>
+            </div>
+        </div>
+
+        <!-- Main Session View: Custom Video Player in Center -->
+        <div id="active-session-view" class="session-view-content">
+            <div class="video-player-container">
+                <!-- Video player (plays original audio, not muted) -->
+                <video id="pose-video" class="pose-video-player" playsinline></video>
+                
+                <!-- Custom Control Bar -->
+                <div class="custom-video-controls">
+                    <!-- Custom Progress Bar -->
+                    <div class="progress-bar-container" id="progress-container">
+                        <div class="progress-bar-fill" id="progress-fill"></div>
+                    </div>
+                    
+                    <div class="controls-row">
+                        <!-- Play/Pause, Skip, End Session -->
+                        <div class="controls-group left">
+                            <button id="play-pause-btn" class="control-btn" title="Play/Pause">
+                                <span class="control-icon" id="play-pause-icon">▶</span>
+                            </button>
+                            <button id="skip-pose-btn" class="control-btn" title="Skip to Next Video">
+                                <span class="control-icon">⏭</span>
+                            </button>
+                            <button id="end-session-btn" class="control-btn danger-text-btn" title="End Session">
+                                End Session
+                            </button>
+                        </div>
+                        
+                        <!-- Current Time / Total Duration -->
+                        <div class="controls-group center">
+                            <span id="time-display" class="time-display">00:00 / 00:00</span>
+                        </div>
+                        
+                        <!-- Volume & Fullscreen -->
+                        <div class="controls-group right">
+                            <button id="mute-btn" class="control-btn" title="Mute/Unmute">
+                                <span class="control-icon" id="mute-icon">🔊</span>
+                            </button>
+                            <input type="range" id="volume-slider" class="volume-slider" min="0" max="1" step="0.05" value="1">
+                            <button id="fullscreen-btn" class="control-btn" title="Full Screen">
+                                <span class="control-icon">⛶</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Completion View (Fades in when session finishes) -->
+        <div id="completion-session-view" class="session-view-content completion-view" style="display: none;">
+            <div class="completion-card glass-card">
+                <div class="completion-emoji">🏆</div>
+                <h1 class="completion-title">Session Completed</h1>
+                
+                <!-- Completion Actions -->
+                <div class="completion-actions">
+                    <button id="btn-restart-session" class="action-btn primary-btn">
+                        Start Again
+                    </button>
+                    <a href="/dashboard" id="btn-dashboard-return" class="action-btn secondary-btn">
+                        Go to Dashboard
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

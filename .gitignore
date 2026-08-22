@@ -1,0 +1,29 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Local database
+database/database.db
+database.db
+*.db
+
+# Secrets
+.env
+
+# virtualenv
+venv/
+env/
+ENV/
+
+# Duplicate backup directory
+Health Verse/Health Verse/
+
+# IDEs
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

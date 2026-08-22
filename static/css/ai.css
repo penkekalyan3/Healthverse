@@ -1,0 +1,235 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:url("../images/background.jpg");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+}
+
+.overlay{
+    min-height:100vh;
+    background:rgba(0,0,0,.55);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:30px;
+}
+
+.container{
+    width:95%;
+    max-width:1200px;
+    background:rgba(255,255,255,.12);
+    backdrop-filter:blur(15px);
+    border-radius:20px;
+    padding:40px;
+    color:white;
+    text-align:center;
+}
+
+.container h1{
+    font-size:40px;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    margin-bottom:35px;
+}
+
+.tips{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:rgba(255,255,255,.12);
+    padding:25px;
+    border-radius:15px;
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    background:rgba(255,255,255,.2);
+}
+
+.icon{
+    font-size:45px;
+    margin-bottom:15px;
+}
+
+.card h2{
+    color:#7CFC00;
+    margin-bottom:15px;
+}
+
+.chat-container {
+    margin-top: 40px;
+    background: rgba(255, 255, 255, .12);
+    padding: 30px;
+    border-radius: 15px;
+    text-align: left;
+}
+
+.chat-container h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.chat-messages {
+    max-height: 400px;
+    overflow-y: auto;
+    background: rgba(0, 0, 0, .2);
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+    scroll-behavior: smooth;
+}
+
+.message {
+    padding: 12px 18px;
+    border-radius: 15px;
+    max-width: 80%;
+    line-height: 1.5;
+    word-wrap: break-word;
+    font-size: 15px;
+}
+
+.user-message {
+    background: #00b894;
+    color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 2px;
+    box-shadow: 0 4px 10px rgba(0, 184, 148, 0.2);
+}
+
+.ai-message {
+    background: rgba(255, 255, 255, .15);
+    color: white;
+    align-self: flex-start;
+    border-bottom-left-radius: 2px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.ai-message li {
+    margin-left: 20px;
+    margin-top: 5px;
+}
+
+.chat-input-area {
+    display: flex;
+    gap: 15px;
+}
+
+.chat-input-area input {
+    flex: 1;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    outline: none;
+    background: rgba(255, 255, 255, 0.9);
+    transition: background 0.3s;
+}
+
+.chat-input-area input:focus {
+    background: white;
+}
+
+.chat-input-area button {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 10px;
+    background: #00b894;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background 0.3s, transform 0.1s;
+}
+
+.chat-input-area button:hover {
+    background: #019875;
+}
+
+.chat-input-area button:active {
+    transform: scale(0.98);
+}
+
+.chat-input-area button:disabled,
+.chat-input-area input:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Typing Indicator Animation */
+.typing-indicator {
+    align-self: flex-start;
+    font-style: italic;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.typing-indicator span {
+    animation: blink 1.4s infinite both;
+    font-weight: bold;
+    display: inline-block;
+    font-size: 18px;
+}
+
+.typing-indicator .dot-2 {
+    animation-delay: .2s;
+}
+
+.typing-indicator .dot-3 {
+    animation-delay: .4s;
+}
+
+@keyframes blink {
+    0% { opacity: .2; }
+    20% { opacity: 1; }
+    100% { opacity: .2; }
+}
+
+/* Custom Scrollbar for Chat Messages */
+.chat-messages::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chat-messages::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+
+.back{
+    display:inline-block;
+    margin-top:35px;
+    color:#7CFC00;
+    text-decoration:none;
+    font-size:18px;
+    font-weight:bold;
+}
+
+.back:hover{
+    color:white;
+}

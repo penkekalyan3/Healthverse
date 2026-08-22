@@ -1,0 +1,304 @@
+/* ==========================================================================
+   Yoga Session Full-Screen Modal - Professional Video Player CSS
+   ========================================================================== */
+
+/* Full-Screen Overlay Background */
+.session-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(8, 10, 16, 0.95); /* Deep dark background */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 99999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    color: #e2e8f0;
+    font-family: 'Poppins', sans-serif;
+    animation: modalFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes modalFadeIn {
+    from { opacity: 0; transform: scale(1.02); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Glassmorphic Main Container */
+.session-container {
+    width: 100%;
+    max-width: 960px;
+    background: rgba(20, 24, 35, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7);
+    overflow: hidden;
+    position: relative;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* Header Section */
+.session-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    margin-bottom: 20px;
+}
+
+.session-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-emoji {
+    font-size: 26px;
+}
+
+.pose-title {
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0;
+    background: linear-gradient(135deg, #10b981, #34d399);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Active Session View & Video Player Wrapper */
+.session-view-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.video-player-container {
+    width: 100%;
+    position: relative;
+    background: #000; /* Black background to pad aspect-ratio differences */
+    border-radius: 16px;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pose-video-player {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Prevent zoom and display full uncropped frame */
+}
+
+/* Custom Controls Bar */
+.custom-video-controls {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.3), transparent);
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+}
+
+/* Reveal controls on hover */
+.video-player-container:hover .custom-video-controls {
+    opacity: 1;
+}
+
+/* Progress Bar */
+.progress-bar-container {
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+    cursor: pointer;
+    position: relative;
+    transition: height 0.15s ease;
+}
+
+.progress-bar-container:hover {
+    height: 8px;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background: #10b981; /* Premium Emerald green */
+    width: 0%;
+    border-radius: 3px;
+    transition: width 0.1s linear;
+}
+
+/* Controls layout */
+.controls-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.controls-group {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.control-btn {
+    background: transparent;
+    border: none;
+    color: #cbd5e1;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.control-btn:hover {
+    color: #10b981;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.control-icon {
+    font-size: 18px;
+}
+
+/* Danger Text Button (End Session) */
+.danger-text-btn {
+    background: rgba(239, 68, 68, 0.15);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: #fca5a5;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.danger-text-btn:hover {
+    background: rgba(239, 68, 68, 0.35);
+    color: #fff;
+    border-color: rgba(239, 68, 68, 0.5);
+}
+
+.time-display {
+    font-size: 14px;
+    color: #94a3b8;
+    font-weight: 500;
+}
+
+/* Volume Slider */
+.volume-slider {
+    width: 80px;
+    accent-color: #10b981;
+    cursor: pointer;
+    height: 4px;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.3);
+    outline: none;
+    border: none;
+}
+
+/* Completion View Card */
+.completion-view {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.completion-card {
+    text-align: center;
+    max-width: 480px;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.completion-emoji {
+    font-size: 64px;
+    margin-bottom: 20px;
+    animation: floatEmoji 3s infinite ease-in-out;
+}
+
+@keyframes floatEmoji {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.completion-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    background: linear-gradient(135deg, #10b981, #34d399);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.completion-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+}
+
+/* General Button Styles */
+.action-btn {
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s ease;
+}
+
+.action-btn.primary-btn {
+    background: linear-gradient(135deg, #10b981, #059669);
+    border: none;
+    color: #fff;
+}
+
+.action-btn.primary-btn:hover {
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+    transform: translateY(-2px);
+}
+
+.action-btn.secondary-btn {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #cbd5e1;
+}
+
+.action-btn.secondary-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    transform: translateY(-2px);
+}

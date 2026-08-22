@@ -1,0 +1,149 @@
+/* ==========================================
+   REGISTER PAGE - HEALTHVERSE
+========================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    margin:0;
+    padding:0;
+    background-image:url("../images/background.jpg");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+    min-height:100vh;
+}
+
+.container{
+    width:100%;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:rgba(0,0,0,0.55);
+    padding:20px;
+}
+
+.register-box{
+    width:450px;
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,0.25);
+    border-radius:20px;
+    padding:40px;
+    text-align:center;
+    color:white;
+    box-shadow:0 10px 30px rgba(0,0,0,0.35);
+}
+
+.register-box h2{
+    font-size:38px;
+    margin-bottom:10px;
+    font-weight:700;
+}
+
+.register-box p{
+    margin-bottom:25px;
+    font-size:16px;
+}
+
+.register-box input{
+    width:100%;
+    padding:15px;
+    margin:12px 0;
+    border:none;
+    border-radius:10px;
+    outline:none;
+    font-size:16px;
+}
+
+.register-box input:focus{
+    box-shadow:0 0 8px rgba(46,204,113,0.6);
+}
+
+.register-box button{
+    width:100%;
+    padding:15px;
+    margin-top:20px;
+    border:none;
+    border-radius:10px;
+    background:#2ecc71;
+    color:white;
+    font-size:18px;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.register-box button:hover{
+    background:#27ae60;
+    transform:translateY(-2px);
+}
+
+.login-link{
+    margin-top:20px;
+    font-size:16px;
+}
+
+.login-link a{
+    color:#2ecc71;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.login-link a:hover{
+    text-decoration:underline;
+}
+
+.back-home{
+    margin-top:15px;
+}
+
+.back-home a{
+    color:white;
+    text-decoration:none;
+    transition:0.3s;
+}
+
+.back-home a:hover{
+    color:#2ecc71;
+}
+
+@media(max-width:768px){
+
+    .register-box{
+        width:90%;
+        padding:30px;
+    }
+
+    .register-box h2{
+        font-size:30px;
+    }
+
+    .register-box input{
+        padding:12px;
+    }
+
+    .register-box button{
+        padding:12px;
+        font-size:16px;
+    }
+}
+.message{
+    background:#2ecc71;
+    color:white;
+    padding:12px;
+    border-radius:8px;
+    margin-bottom:15px;
+    text-align:center;
+    font-weight:500;
+}

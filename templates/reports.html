@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Reports | HealthVerse</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/reports.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="overlay">
+
+    <div class="container">
+
+        <h1>📄 Health Reports</h1>
+
+        <p class="subtitle">
+            Your complete fitness and wellness summary.
+        </p>
+
+        <div class="report-grid">
+
+            <div class="report-card">
+                <div class="icon">❤️</div>
+                <h2>BMI</h2>
+                <h3>{{ "%.2f"|format(latest_bmi.bmi) if latest_bmi else '--' }}</h3>
+                <p>{{ latest_bmi.category if latest_bmi else 'No records' }}</p>
+            </div>
+
+            <div class="report-card">
+                <div class="icon">⚖️</div>
+                <h2>Weight</h2>
+                <h3>{{ latest_bmi.weight if latest_bmi else (profile.weight if profile else '--') }} kg</h3>
+                <p>Current Weight</p>
+            </div>
+
+            <div class="report-card">
+                <div class="icon">💧</div>
+                <h2>Water Intake</h2>
+                <h3>{{ latest_progress.water if latest_progress else '--' }} L</h3>
+                <p>Today's Intake</p>
+            </div>
+
+            <div class="report-card">
+                <div class="icon">🔥</div>
+                <h2>Calories</h2>
+                <h3>{{ latest_progress.calories if latest_progress else '--' }} kcal</h3>
+                <p>Burned Today</p>
+            </div>
+
+            <div class="report-card">
+                <div class="icon">😴</div>
+                <h2>Sleep</h2>
+                <h3>{{ latest_progress.sleep if latest_progress else '--' }} hrs</h3>
+                <p>Last Night</p>
+            </div>
+
+            <div class="report-card">
+                <div class="icon">🧘</div>
+                <h2>Workout</h2>
+                <h3>{{ latest_progress.exercise if latest_progress else '--' }} Min</h3>
+                <p>Exercise Logged</p>
+            </div>
+
+        </div>
+
+        <!-- Latest Profile Section -->
+        <div style="margin-top: 30px; background: rgba(255,255,255,.12); padding: 25px; border-radius: 15px; text-align: left;">
+            <h2 style="margin-bottom: 15px; text-align: center; color: #7CFC00;">👤 User Profile Details</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; font-size: 16px; color: white;">
+                <div><strong>Age:</strong> {{ profile.age if profile else '--' }}</div>
+                <div><strong>Gender:</strong> {{ profile.gender if profile else '--' }}</div>
+                <div><strong>Goal:</strong> {{ profile.goal if profile else '--' }}</div>
+                <div><strong>Height:</strong> {{ profile.height if profile else '--' }} cm</div>
+                <div><strong>Weight:</strong> {{ profile.weight if profile else '--' }} kg</div>
+                <div><strong>Activity Level:</strong> {{ profile.activity_level if profile else '--' }}</div>
+            </div>
+        </div>
+
+        <!-- BMI History Section -->
+        <div style="margin-top: 30px; background: rgba(255,255,255,.12); padding: 25px; border-radius: 15px; text-align: left;">
+            <h2 style="margin-bottom: 15px; text-align: center; color: #7CFC00;">❤️ BMI History</h2>
+            <div style="max-height: 250px; overflow-y: auto;">
+                <table style="width: 100%; border-collapse: collapse; text-align: left; color: white; font-size: 15px;">
+                    <thead>
+                        <tr style="border-bottom: 2px solid rgba(255,255,255,0.3);">
+                            <th style="padding: 10px;">Date</th>
+                            <th style="padding: 10px;">Height</th>
+                            <th style="padding: 10px;">Weight</th>
+                            <th style="padding: 10px;">BMI</th>
+                            <th style="padding: 10px;">Category</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for record in bmi_history %}
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                            <td style="padding: 10px;">{{ record.date[:16] }}</td>
+                            <td style="padding: 10px;">{{ record.height }} cm</td>
+                            <td style="padding: 10px;">{{ record.weight }} kg</td>
+                            <td style="padding: 10px;">{{ "%.2f"|format(record.bmi) }}</td>
+                            <td style="padding: 10px;">{{ record.category }}</td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td colspan="5" style="padding: 10px; text-align: center;">No BMI history recorded yet.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <br><br>
+
+        <a href="{{ url_for('download_report') }}" style="text-decoration: none;">
+            <button class="download-btn">
+                📥 Download Report
+            </button>
+        </a>
+
+        <br><br>
+
+        <a href="{{ url_for('dashboard') }}" class="back-btn">
+            ← Back to Dashboard
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

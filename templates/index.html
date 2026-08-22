@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthVerse - AI Powered Fitness & Wellness</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav>
+
+        <div class="logo">
+            🌿 HealthVerse
+        </div>
+
+        <ul>
+
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+
+            <li><a href="#features">Features</a></li>
+
+            <li><a href="#about">About</a></li>
+
+            <li><a href="#contact">Contact</a></li>
+
+            <li><a href="{{ url_for('login') }}">Login</a></li>
+
+        </ul>
+
+    </nav>
+
+    <!-- ================= HERO SECTION ================= -->
+
+    <section class="hero">
+
+        <div class="overlay">
+
+            <h1>AI Powered Fitness & Wellness</h1>
+
+            <p>
+                Transform your lifestyle with Yoga,
+                AI-powered recommendations,
+                personalized fitness plans,
+                and advanced health analytics.
+            </p>
+
+            <a href="{{ url_for('register') }}">
+                <button>Get Started</button>
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- ================= FEATURES ================= -->
+
+    <section class="features" id="features">
+
+        <h2>Why Choose HealthVerse?</h2>
+
+        <div class="feature-container">
+
+            <div class="card">
+
+                <div class="icon">❤️</div>
+
+                <h3>BMI Calculator</h3>
+
+                <p>
+                    Calculate your Body Mass Index instantly and
+                    understand your health status.
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <div class="icon">🧘</div>
+
+                <h3>Yoga Planner</h3>
+
+                <p>
+                    Receive personalized yoga plans based on your
+                    fitness goals and health conditions.
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <div class="icon">📈</div>
+
+                <h3>Progress Tracker</h3>
+
+                <p>
+                    Track your daily workouts,
+                    calories,
+                    weight,
+                    and overall fitness journey.
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <div class="icon">🤖</div>
+
+                <h3>AI Health Coach</h3>
+
+                <p>
+                    Get intelligent health suggestions,
+                    nutrition tips,
+                    and wellness guidance powered by AI.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= ABOUT ================= -->
+
+    <section class="features" id="about">
+
+        <h2>About HealthVerse</h2>
+
+        <p style="max-width:900px;margin:auto;font-size:18px;line-height:35px;">
+
+            HealthVerse is an AI-powered fitness and wellness platform
+            designed to help users achieve a healthier lifestyle through
+            smart health tracking, yoga planning, BMI analysis,
+            and AI-based recommendations.
+
+        </p>
+
+    </section>
+
+    <!-- ================= CONTACT ================= -->
+
+    <section class="features" id="contact">
+
+        <h2>Contact Us</h2>
+
+        <p style="font-size:20px;margin-top:20px;">
+
+            📧 support@healthverse.com
+
+        </p>
+
+        <p style="font-size:20px;margin-top:10px;">
+
+            📞 +91 9876543210
+
+        </p>
+
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <p>
+
+            © 2026 HealthVerse | AI Powered Fitness & Wellness Platform
+
+        </p>
+
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Health Coach | HealthVerse</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/ai.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="overlay">
+
+    <div class="container">
+
+        <h1>🤖 AI Health Coach</h1>
+
+        <p class="subtitle">
+            Your personal AI-powered wellness assistant
+        </p>
+
+        <div class="tips">
+
+            <div class="card">
+                <div class="icon">🥗</div>
+                <h2>Healthy Diet</h2>
+                <p>Eat fruits, vegetables, protein, and whole grains every day.</p>
+            </div>
+
+            <div class="card">
+                <div class="icon">🏋️</div>
+                <h2>Daily Workout</h2>
+                <p>Exercise for at least 30 minutes to stay fit.</p>
+            </div>
+
+            <div class="card">
+                <div class="icon">💧</div>
+                <h2>Hydration</h2>
+                <p>Drink 2–3 liters of water every day.</p>
+            </div>
+
+            <div class="card">
+                <div class="icon">😴</div>
+                <h2>Sleep</h2>
+                <p>Sleep 7–8 hours every night for better health.</p>
+            </div>
+
+            <div class="card">
+                <div class="icon">🧘</div>
+                <h2>Meditation</h2>
+                <p>Spend 15 minutes every day relaxing your mind.</p>
+            </div>
+
+            <div class="card">
+                <div class="icon">❤️</div>
+                <h2>Health Tip</h2>
+                <p>Healthy habits every day create a healthier future.</p>
+            </div>
+
+        </div>
+
+        <div class="chat-container">
+            <h2>💬 AI Health Coach</h2>
+            
+            <div id="chat-messages" class="chat-messages">
+                <div class="message ai-message">
+                    🤖 Hello! I am your HealthVerse AI coach. Feel free to ask me any wellness, fitness, or nutrition questions!
+                </div>
+                <!-- Messages will be dynamically appended here -->
+            </div>
+            
+            <div id="typing-indicator" class="message ai-message typing-indicator" style="display: none;">
+                🤖 AI Coach is typing<span class="dot-1">.</span><span class="dot-2">.</span><span class="dot-3">.</span>
+            </div>
+            
+            <form id="chat-form" class="chat-input-area">
+                <input type="text" id="user-input" placeholder="Ask your health question..." required autocomplete="off" style="color: black;">
+                <button type="submit" id="send-btn">Send</button>
+            </form>
+        </div>
+
+        <a href="{{ url_for('dashboard') }}" class="back">
+            ← Back to Dashboard
+        </a>
+
+    </div>
+
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const chatForm = document.getElementById("chat-form");
+        const userInput = document.getElementById("user-input");
+        const chatMessages = document.getElementById("chat-messages");
+        const typingIndicator = document.getElementById("typing-indicator");
+        const sendBtn = document.getElementById("send-btn");
+
+        function appendMessage(text, isUser = false) {
+            const messageDiv = document.createElement("div");
+            messageDiv.className = `message ${isUser ? 'user-message' : 'ai-message'}`;
+            
+            // Format text: escape HTML, then process bold, lists, and line breaks
+            let escapedText = text
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;");
+                
+            let formattedText = escapedText
+                .replace(/\n/g, "<br>")
+                .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+                .replace(/•\s(.*?)(<br>|$)/g, "<li>$1</li>$2")
+                .replace(/\*(.*?)\*/g, "<em>$1</em>");
+            
+            messageDiv.innerHTML = (isUser ? "" : "🤖 ") + formattedText;
+            chatMessages.appendChild(messageDiv);
+            
+            // Auto scroll to bottom
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        chatForm.addEventListener("submit", function(e) {
+            e.preventDefault();
+            const question = userInput.value.trim();
+            if (!question) return;
+
+            // Add user message
+            appendMessage(question, true);
+            userInput.value = "";
+            
+            // Disable input and button
+            userInput.disabled = true;
+            sendBtn.disabled = true;
+
+            // Show typing indicator
+            typingIndicator.style.display = "block";
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            // Send request via AJAX
+            fetch("{{ url_for('ai') }}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ question: question })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Hide typing indicator
+                typingIndicator.style.display = "none";
+                userInput.disabled = false;
+                sendBtn.disabled = false;
+                userInput.focus();
+
+                if (data.success && data.response) {
+                    appendMessage(data.response, false);
+                } else {
+                    appendMessage("Sorry, I encountered an error. Please try again later.", false);
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                typingIndicator.style.display = "none";
+                userInput.disabled = false;
+                sendBtn.disabled = false;
+                userInput.focus();
+                appendMessage("Unable to connect to the AI Coach. Please check your internet connection and try again.", false);
+            });
+        });
+    });
+</script>
+
+</body>
+</html>

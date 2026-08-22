@@ -1,0 +1,222 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+
+    background-image:url("../images/background.jpg");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+
+    min-height:100vh;
+
+}
+
+.overlay{
+
+    background:rgba(0,0,0,0.55);
+    min-height:100vh;
+    padding-bottom:40px;
+
+}
+
+/* Navbar */
+
+nav{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:20px 70px;
+
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(12px);
+
+}
+
+.logo{
+
+    color:white;
+    font-size:28px;
+    font-weight:bold;
+
+}
+
+nav ul{
+
+    display:flex;
+    list-style:none;
+
+}
+
+nav ul li{
+
+    margin-left:30px;
+
+}
+
+nav ul li a{
+
+    color:white;
+    text-decoration:none;
+    font-size:18px;
+    transition:.3s;
+
+}
+
+nav ul li a:hover{
+
+    color:#00ff99;
+
+}
+
+/* Welcome */
+
+.welcome{
+
+    text-align:center;
+    color:white;
+    padding:50px 20px;
+
+}
+
+.welcome h1{
+
+    font-size:42px;
+    margin-bottom:10px;
+
+}
+
+.welcome p{
+
+    font-size:18px;
+
+}
+
+/* Dashboard */
+
+.dashboard{
+
+    width:90%;
+    margin:auto;
+
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+    gap:30px;
+
+}
+
+/* Cards */
+
+.card{
+
+    background:rgba(255,255,255,0.12);
+
+    backdrop-filter:blur(15px);
+
+    border-radius:20px;
+
+    padding:30px;
+
+    text-align:center;
+
+    color:white;
+
+    transition:.4s;
+
+    border:1px solid rgba(255,255,255,0.2);
+
+}
+
+.card:hover{
+
+    transform:translateY(-10px);
+
+}
+
+.icon{
+
+    font-size:50px;
+
+    margin-bottom:20px;
+
+}
+
+.card h2{
+
+    margin-bottom:15px;
+
+}
+
+.card p{
+
+    margin-bottom:20px;
+
+    line-height:28px;
+
+}
+
+.card button{
+
+    padding:12px 30px;
+
+    border:none;
+
+    border-radius:30px;
+
+    background:#00cc66;
+
+    color:white;
+
+    font-size:16px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.card button:hover{
+
+    background:#00994d;
+
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+    nav{
+
+        flex-direction:column;
+        gap:15px;
+
+    }
+
+    nav ul{
+
+        flex-direction:column;
+        text-align:center;
+
+    }
+
+    nav ul li{
+
+        margin:10px 0;
+
+    }
+
+    .welcome h1{
+
+        font-size:30px;
+
+    }
+
+}
